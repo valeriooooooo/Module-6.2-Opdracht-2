@@ -1,0 +1,35 @@
+// Sound placeholders
+const music = {
+    play: () => console.log("Music playing..."),
+    volume: 0.5
+};
+
+// UI Elements
+const settingsModal = document.getElementById("settings-modal");
+const settingsBtn = document.getElementById("settings-btn");
+const closeSettingsBtn = document.getElementById("close-settings");
+const playBtn = document.getElementById("play-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+// Initialization
+settingsBtn.onclick = () => settingsModal.classList.remove("hidden");
+closeSettingsBtn.onclick = () => settingsModal.classList.add("hidden");
+
+playBtn.onclick = () => {
+    music.play();
+    startCharacterSelect();
+};
+
+restartBtn.onclick = () => {
+    showScreen("start-screen");
+};
+
+// Volume controls
+document.getElementById("music-volume").addEventListener("input", e => {
+    music.volume = e.target.value;
+    console.log(`Music volume: ${e.target.value}`);
+});
+
+document.getElementById("sfx-volume").addEventListener("input", e => {
+    console.log(`SFX volume: ${e.target.value}`);
+});

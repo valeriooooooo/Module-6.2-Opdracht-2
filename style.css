@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: #111;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    width: 1024px;
+    height: 576px;
+    position: relative;
+    background: #222;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border: 4px solid #444;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 40px;
+    color: #ff4444;
+    text-shadow: 4px 4px black;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 24px;
+    cursor: pointer;
+    background: #444;
+    color: white;
+    border: none;
+    margin: 10px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: #666;
+    transform: scale(1.05);
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #333;
+    padding: 40px;
+    border: 2px solid white;
+    text-align: center;
+}
+
+.setting-item {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Character Select */
+.char-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    gap: 10px;
+    margin: 20px;
+}
+
+.char-cell {
+    width: 100px;
+    height: 100px;
+    background: #444;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.char-cell.p1-hover { border-color: blue; }
+.char-cell.p2-hover { border-color: red; }
+.char-cell.p1-locked { background: #222; border-color: blue; border-width: 4px; }
+.char-cell.p2-locked { background: #222; border-color: red; border-width: 4px; }
+
+.player-previews {
+    display: flex;
+    gap: 100px;
+    margin-top: 20px;
+}
+
+#p1-preview { color: blue; font-weight: bold; }
+#p2-preview { color: red; font-weight: bold; }
+
+/* Fight Scene */
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    background: #333; /* Placeholder for stage background */
+}
+
+.ui-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.health-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.health-bar-bg {
+    width: 40%;
+    height: 30px;
+    background: #444;
+    border: 2px solid white;
+}
+
+.health-bar {
+    height: 100%;
+    background: yellow;
+    width: 100%;
+    transition: width 0.3s;
+}
+
+.timer {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+#game-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px black;
+}
+
+#transition-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#transition-overlay.visible {
+    opacity: 1;
+}

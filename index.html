@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street Fighter Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <h1>STREET FIGHTER</h1>
+            <button id="play-btn">PLAY</button>
+            <button id="settings-btn">SETTINGS</button>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <label>Music</label>
+                    <input type="range" id="music-volume" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="setting-item">
+                    <label>SFX</label>
+                    <input type="range" id="sfx-volume" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <button id="close-settings">OK</button>
+            </div>
+        </div>
+
+        <!-- Character Select -->
+        <div id="character-select" class="screen hidden">
+            <h2>Select Your Character</h2>
+            <div class="char-grid" id="char-grid">
+                <!-- Characters will be injected here -->
+            </div>
+            <div class="player-previews">
+                <div id="p1-preview">P1</div>
+                <div id="p2-preview">P2</div>
+            </div>
+        </div>
+
+        <!-- Fight Scene -->
+        <div id="fight-scene" class="screen hidden">
+            <div class="ui-overlay">
+                <div class="health-container">
+                    <div class="health-bar-bg"><div id="p1-health" class="health-bar"></div></div>
+                    <div class="timer" id="timer">99</div>
+                    <div class="health-bar-bg"><div id="p2-health" class="health-bar"></div></div>
+                </div>
+                <div id="game-text"></div>
+            </div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <!-- Win Screen -->
+        <div id="win-screen" class="screen hidden">
+            <h2 id="winner-text">PLAYER 1 WINS!</h2>
+            <button id="restart-btn">RESTART</button>
+        </div>
+
+        <div id="transition-overlay" class="hidden"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/player.js"></script>
+    <script src="js/characterselect.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/input.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
