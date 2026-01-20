@@ -82,6 +82,24 @@ button:hover {
     text-align: center;
 }
 
+.instructions {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.instruction-column h3 {
+    margin-bottom: 10px;
+    color: #ffd166;
+}
+
+.instruction-column ul {
+    list-style: none;
+    line-height: 1.6;
+}
+
 .setting-item {
     margin: 20px 0;
     display: flex;
