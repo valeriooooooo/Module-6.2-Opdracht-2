@@ -1,12 +1,12 @@
 const characters = [
-    { name: "Ryu", color: "white" },
-    { name: "Ken", color: "red" },
-    { name: "Chun-Li", color: "blue" },
-    { name: "Guile", color: "green" },
-    { name: "Dhalsim", color: "orange" },
-    { name: "Blanka", color: "yellow" },
-    { name: "Zangief", color: "darkred" },
-    { name: "E. Honda", color: "brown" }
+    { name: "Malek", color: "black" },
+    { name: "Valerio", color: "pink" },
+    { name: "Walid", color: "darkblue" },
+    { name: "Sam", color: "green" },
+    { name: "Sultan", color: "orange" },
+    { name: "Jop", color: "gray" },
+    { name: "Duzyano", color: "darkred" },
+    { name: "Tobias", color: "purple" }
 ];
 
 let charSelect;
