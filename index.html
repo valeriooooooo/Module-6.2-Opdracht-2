@@ -27,7 +27,36 @@
                     <label>SFX</label>
                     <input type="range" id="sfx-volume" min="0" max="1" step="0.01" value="0.5">
                 </div>
+                <button id="instructions-modal-btn">Instructions</button>
                 <button id="close-settings">OK</button>
+            </div>
+        </div>
+
+        <!-- Instructions Modal -->
+        <div id="instructions-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>How to Play</h2>
+                <div class="instructions">
+                    <div class="instruction-column">
+                        <h3>Arrow Keys</h3>
+                        <ul>
+                            <li>Left Arrow / Right: move</li>
+                            <li>Up Arrow: jump</li>
+                            <li>Down Arrow: stoop</li>
+                            <li>M : punch</li>
+                        </ul>
+                    </div>
+                    <div class="instruction-column">
+                        <h3>WASD + E</h3>
+                        <ul>
+                            <li>A / D: move</li>
+                            <li>W: jump</li>
+                            <li>S: stoop</li>
+                            <li>E: punch</li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="close-instructions">OK</button>
             </div>
         </div>
 

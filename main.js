@@ -6,14 +6,22 @@ const music = {
 
 // UI Elements
 const settingsModal = document.getElementById("settings-modal");
+const instructionsModal = document.getElementById("instructions-modal");
 const settingsBtn = document.getElementById("settings-btn");
 const closeSettingsBtn = document.getElementById("close-settings");
 const playBtn = document.getElementById("play-btn");
 const restartBtn = document.getElementById("restart-btn");
+const instructionsModalBtn = document.getElementById("instructions-modal-btn");
+const closeInstructionsBtn = document.getElementById("close-instructions");
 
 // Initialization
 settingsBtn.onclick = () => settingsModal.classList.remove("hidden");
 closeSettingsBtn.onclick = () => settingsModal.classList.add("hidden");
+instructionsModalBtn.onclick = () => {
+    settingsModal.classList.add("hidden");
+    instructionsModal.classList.remove("hidden");
+};
+closeInstructionsBtn.onclick = () => instructionsModal.classList.add("hidden");
 
 playBtn.onclick = () => {
     music.play();
