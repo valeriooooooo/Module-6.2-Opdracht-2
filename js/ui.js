@@ -55,6 +55,10 @@ async function startCountdown() {
 function updateHealth(p1, p2) {
     p1HealthBar.style.width = Math.max(0, p1.health) + "%";
     p2HealthBar.style.width = Math.max(0, p2.health) + "%";
+    
+    // Update player names from selected characters
+    document.getElementById("p1-name").innerText = characters[charSelect.p1Index].name;
+    document.getElementById("p2-name").innerText = characters[charSelect.p2Index].name;
 
     if (p1.health <= 0) endGame("Player 2");
     else if (p2.health <= 0) endGame("Player 1");

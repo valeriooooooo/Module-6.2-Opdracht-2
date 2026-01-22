@@ -24,17 +24,18 @@ class Player {
         let drawY = this.state === "crouch" ? this.pos.y + this.height / 2 : this.pos.y;
         
         ctx.fillRect(this.pos.x, drawY, this.width, drawHeight);
+    }
 
-        // Attack box visualization (optional, for debugging)
-        if (this.isAttacking) {
-            ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
-            ctx.fillRect(
-                this.attackBox.pos.x,
-                this.attackBox.pos.y,
-                this.attackBox.width,
-                this.attackBox.height
-            );
-        }
+    // Draw the hitbox overlay above both players for visibility
+    drawAttack(ctx) {
+        if (!this.isAttacking) return;
+        ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.fillRect(
+            this.attackBox.pos.x,
+            this.attackBox.pos.y,
+            this.attackBox.width,
+            this.attackBox.height
+        );
     }
 
     update() {
