@@ -42,13 +42,21 @@ class Player {
         this.pos.y += this.vel.y;
 
         // Gravity
-        if (this.pos.y + this.height + this.vel.y >= 450) { // 450 is ground level
+        const groundLevel = typeof groundY !== "undefined" ? groundY : 450;
+        const canvasWidth = typeof canvas !== "undefined" ? canvas.width : 1024;
+
+        if (this.pos.y + this.height + this.vel.y >= groundLevel) {
             this.vel.y = 0;
-            this.pos.y = 450 - this.height;
+            this.pos.y = groundLevel - this.height;
             if (this.state === "jump") this.state = "idle";
         } else {
             this.vel.y += 0.8; // gravity force
         }
+
+        // Keep player inside the arena bounds
+        if (this.pos.x < 0) this.pos.x = 0;
+        if (this.pos.x + this.width > canvasWidth) this.pos.x = canvasWidth - this.width;
+        if (this.pos.y < 0) this.pos.y = 0;
 
         // Update attack box position
         this.attackBox.pos.x = this.side === "left" ? this.pos.x + this.width : this.pos.x - this.attackBox.width;

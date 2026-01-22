@@ -3,6 +3,9 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = 1024;
 canvas.height = 576;
+const groundY = 450;
+const groundHeight = canvas.height - groundY;
+const groundSnowCap = 14; // thin snowy layer on top of the ground
 // Initialize snow effect
 let snowEffect;
 
@@ -75,8 +78,15 @@ function animate() {
     
     ctx.fillStyle = "#333";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Ground: stone base with snowy top
+    ctx.fillStyle = "#3b3b3f"; // stone color
+    ctx.fillRect(0, groundY, canvas.width, groundHeight);
+    ctx.fillStyle = "#e8f2ff"; // snow cap color
+    ctx.fillRect(0, groundY, canvas.width, Math.min(groundSnowCap, groundHeight));
+
     // Update and draw snow in the background
-    snowEffect.update();
+    snowEffect.update(groundY + Math.min(groundSnowCap, groundHeight));
     snowEffect.draw();
     
 

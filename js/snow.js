@@ -1,6 +1,7 @@
 // Snow effect for the game background
 class Snowflake {
     constructor(canvasWidth, canvasHeight) {
+        this.canvasWidth = canvasWidth;
         this.x = Math.random() * canvasWidth;
         this.y = Math.random() * canvasHeight - canvasHeight;
         this.radius = Math.random() * 3 + 1; // 1-4px
@@ -9,14 +10,15 @@ class Snowflake {
         this.opacity = Math.random() * 0.6 + 0.4; // 0.4-1.0 opacity
     }
 
-    update(canvasHeight) {
+    update(canvasHeight, stopY) {
         this.y += this.speed;
         this.x += this.drift;
         
-        // Reset snowflake to top when it goes off screen
-        if (this.y > canvasHeight) {
+        // If snow reaches the snow cap (stopY) or bottom, recycle at the top
+        const limitY = typeof stopY === "number" ? stopY : canvasHeight;
+        if (this.y > limitY) {
             this.y = -10;
-            this.x = Math.random() * canvas.width;
+            this.x = Math.random() * this.canvasWidth;
         }
     }
 
@@ -49,11 +51,11 @@ class SnowEffect {
         this.active = false;
     }
 
-    update() {
+    update(stopY) {
         if (!this.active) return;
         
         for (let snowflake of this.snowflakes) {
-            snowflake.update(this.canvas.height);
+            snowflake.update(this.canvas.height, stopY);
         }
     }
 
