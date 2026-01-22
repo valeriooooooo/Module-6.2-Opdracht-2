@@ -33,7 +33,7 @@ window.addEventListener("keydown", (event) => {
             case "d": keys.d.pressed = true; break;
             case "a": keys.a.pressed = true; break;
             case "w": 
-                if (p1.pos.y + p1.height >= 450) p1.vel.y = -20;
+                if (p1.pos.y + p1.height >= (typeof groundY !== "undefined" ? groundY : 450)) p1.vel.y = -22;
                 p1.state = "jump";
                 break;
             case "e": p1.attack(); break;
@@ -45,7 +45,7 @@ window.addEventListener("keydown", (event) => {
             case "ArrowRight": keys.ArrowRight.pressed = true; break;
             case "ArrowLeft": keys.ArrowLeft.pressed = true; break;
             case "ArrowUp": 
-                if (p2.pos.y + p2.height >= 450) p2.vel.y = -20;
+                if (p2.pos.y + p2.height >= (typeof groundY !== "undefined" ? groundY : 450)) p2.vel.y = -22;
                 p2.state = "jump";
                 break;
             case "m": p2.attack(); break;

@@ -157,11 +157,31 @@ button:hover {
 .health-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.health-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.health-section:nth-child(3) {
+    align-items: flex-end;
+}
+
+.player-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px black;
+    height: 20px;
 }
 
 .health-bar-bg {
-    width: 40%;
+    width: 70%;
     height: 30px;
     background: #444;
     border: 2px solid white;
@@ -181,7 +201,7 @@ button:hover {
 
 #game-text {
     position: absolute;
-    top: 50%;
+    top: 150%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 80px;
