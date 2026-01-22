@@ -3,6 +3,9 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = 1024;
 canvas.height = 576;
+// Initialize snow effect
+let snowEffect;
+
 
 let p1, p2;
 let gameActive = false;
@@ -10,6 +13,12 @@ let timer = 99;
 let timerId;
 
 function startFight() {
+        // Start the snow effect
+        if (!snowEffect) {
+            snowEffect = new SnowEffect(canvas, 150); // 150 snowflakes
+        }
+        snowEffect.start();
+    
     p1 = new Player({
         x: 100,
         y: 0,
@@ -66,6 +75,10 @@ function animate() {
     
     ctx.fillStyle = "#333";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Update and draw snow in the background
+    snowEffect.update();
+    snowEffect.draw();
+    
 
     p1.update();
     p2.update();
@@ -89,6 +102,7 @@ function animate() {
 
 function endGame(winner) {
     gameActive = false;
+        snowEffect.stop();
     clearTimeout(timerId);
     document.getElementById("winner-text").innerText = winner === "TIE" ? "IT'S A TIE!" : `${winner} WINS!`;
     showScreen("win-screen");
