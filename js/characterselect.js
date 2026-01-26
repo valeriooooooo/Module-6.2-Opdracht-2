@@ -1,12 +1,12 @@
 const characters = [
-    { name: "Malek", color: "black" },
-    { name: "Valerio", color: "pink" },
-    { name: "Walid", color: "darkblue" },
-    { name: "Sam", color: "green" },
-    { name: "Sultan", color: "orange" },
-    { name: "Jop", color: "gray" },
-    { name: "Duzyano", color: "darkred" },
-    { name: "Tobias", color: "purple" }
+    { name: "Malek", color: "black", portrait: "images/favicon.png", folder: "malek" },
+    { name: "Valerio", color: "pink", portrait: "images/valerio_portrait.png", folder: "valerio" },
+    { name: "Walid", color: "darkblue", portrait: "images/walid_portrait.png", folder: "malek" },
+    { name: "Sam", color: "green", portrait: "images/sam_portrait.png", folder: "valerio" },
+    { name: "Sultan", color: "orange", portrait: "images/sultan_portrait.png", folder: "malek" },
+    { name: "Jop", color: "gray", portrait: "images/jop_portrait.png", folder: "valerio" },
+    { name: "Duzyano", color: "darkred", portrait: "images/duzyano_portrait.png", folder: "duzyano" },
+    { name: "Tobias", color: "purple", portrait: "images/tobias_portrait.png", folder: "tobias" }
 ];
 
 let charSelect;
@@ -27,8 +27,15 @@ class CharacterSelect {
             const cell = document.createElement("div");
             cell.className = "char-cell";
             cell.id = `char-${i}`;
-            cell.innerText = char.name;
-            cell.style.backgroundColor = char.color;
+            
+            const img = document.createElement("img");
+            img.src = char.portrait;
+            cell.appendChild(img);
+
+            const nameSpan = document.createElement("span");
+            nameSpan.innerText = char.name;
+            cell.appendChild(nameSpan);
+
             grid.appendChild(cell);
         });
         this.updateHighlights();
@@ -69,13 +76,25 @@ class CharacterSelect {
 
         document.getElementById("p1-preview").innerText = `P1: ${characters[this.p1Index].name}`;
         document.getElementById("p2-preview").innerText = `P2: ${characters[this.p2Index].name}`;
+
+        // Update Idle Previews
+        const p1Preview = document.getElementById("p1-idle-preview");
+        const p2Preview = document.getElementById("p2-idle-preview");
+        
+        const p1Char = characters[this.p1Index];
+        const p2Char = characters[this.p2Index];
+
+        p1Preview.innerHTML = `<img src="assets/characters/${p1Char.folder}/${p1Char.folder}_idle.gif">`;
+        p2Preview.innerHTML = `<img src="assets/characters/${p2Char.folder}/${p2Char.folder}_idle.gif">`;
     }
 
     confirm(player) {
+        if (this.locked[player]) return;
         this.locked[player] = true;
         this.updateHighlights();
+        
         if (this.locked.p1 && this.locked.p2) {
-            setTimeout(() => startCountdown(), 500);
+            playMatchTransition();
         }
     }
 }

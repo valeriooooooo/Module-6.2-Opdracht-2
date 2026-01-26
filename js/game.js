@@ -16,33 +16,12 @@ let timer = 99;
 let timerId;
 
 function startFight() {
-        // Start the snow effect
-        if (!snowEffect) {
-            snowEffect = new SnowEffect(canvas, 150); // 150 snowflakes
-        }
-        snowEffect.start();
-    
-    p1 = new Player({
-        x: 100,
-        y: 0,
-        color: characters[charSelect.p1Index].color,
-        side: "left"
-    });
-
-    p2 = new Player({
-        x: 800,
-        y: 0,
-        color: characters[charSelect.p2Index].color,
-        side: "right"
-    });
-
-    gameActive = true;
-    timer = 99;
-    document.getElementById("timer").innerText = timer;
-    
-    decreaseTimer();
-    animate();
+    // This is now handled by playMatchTransition in ui.js
+    // We keep it as a fallback or rename it
 }
+
+// Remove old startCountdown from here as it's now in ui.js
+
 
 function decreaseTimer() {
     if (timer > 0) {

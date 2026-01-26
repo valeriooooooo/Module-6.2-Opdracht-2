@@ -1,8 +1,5 @@
-// Sound placeholders
-const music = {
-    play: () => console.log("Music playing..."),
-    volume: 0.5
-};
+// Audio elements
+const bgMusic = document.getElementById("bg-music");
 
 // UI Elements
 const settingsModal = document.getElementById("settings-modal");
@@ -24,7 +21,7 @@ instructionsModalBtn.onclick = () => {
 closeInstructionsBtn.onclick = () => instructionsModal.classList.add("hidden");
 
 playBtn.onclick = () => {
-    music.play();
+    bgMusic.play().catch(e => console.log("Music play blocked", e));
     startCharacterSelect();
 };
 
@@ -34,8 +31,7 @@ restartBtn.onclick = () => {
 
 // Volume controls
 document.getElementById("music-volume").addEventListener("input", e => {
-    music.volume = e.target.value;
-    console.log(`Music volume: ${e.target.value}`);
+    bgMusic.volume = e.target.value;
 });
 
 document.getElementById("sfx-volume").addEventListener("input", e => {

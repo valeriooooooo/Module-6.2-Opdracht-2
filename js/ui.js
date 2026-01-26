@@ -29,27 +29,69 @@ async function fadeIn(duration = 1000) {
     transitionOverlay.classList.add("hidden");
 }
 
-async function startCountdown() {
-    // 3..2..1 Countdown
+async function playMatchTransition() {
+    // 3 second total transition
+    // Fade out (1.5s)
+    transitionOverlay.classList.remove("hidden");
+    transitionOverlay.classList.add("visible");
+    await wait(1500);
+
+    // Switch screens
+    showScreen("fight-scene");
+    
+    // Setup game without starting it
+    p1 = new Player({
+        x: 150,
+        y: 0,
+        character: characters[charSelect.p1Index],
+        side: "left",
+        spriteId: "p1-sprite"
+    });
+
+    p2 = new Player({
+        x: 700,
+        y: 0,
+        character: characters[charSelect.p2Index],
+        side: "right",
+        spriteId: "p2-sprite"
+    });
+
+    // Reset UI
+    document.getElementById("p1-name").innerText = p1.character.name;
+    document.getElementById("p2-name").innerText = p2.character.name;
+    p1HealthBar.style.width = "100%";
+    p2HealthBar.style.width = "100%";
+    document.getElementById("timer").innerText = "99";
+    
+    // Start snow
+    if (!snowEffect) {
+        snowEffect = new SnowEffect(canvas, 150);
+    }
+    snowEffect.start();
+
+    // Fade in (1.5s)
+    transitionOverlay.classList.remove("visible");
+    await wait(1500);
+    transitionOverlay.classList.add("hidden");
+
+    // Start 3 2 1 Fight Countdown
+    await startFightCountdown();
+}
+
+async function startFightCountdown() {
     showText("3", 800);
     await wait(1000);
     showText("2", 800);
     await wait(1000);
     showText("1", 800);
     await wait(1000);
-
-    // Fade Out (5s)
-    await fadeOut(5000);
+    showText("FIGHT!", 800);
     
-    // Setup and switch screen
-    document.getElementById("character-select").classList.add("hidden");
-    document.getElementById("fight-scene").classList.remove("hidden");
-    
-    // Fade In
-    await fadeIn(1000);
-    
-    showText("FIGHT!", 1000);
-    startFight();
+    // Start the game
+    gameActive = true;
+    timer = 99;
+    decreaseTimer();
+    animate();
 }
 
 function updateHealth(p1, p2) {

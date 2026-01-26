@@ -63,8 +63,12 @@
         <!-- Character Select -->
         <div id="character-select" class="screen hidden">
             <h2>Select Your Character</h2>
-            <div class="char-grid" id="char-grid">
-                <!-- Characters will be injected here -->
+            <div class="character-select-container">
+                <div id="p1-idle-preview" class="idle-preview"></div>
+                <div class="char-grid" id="char-grid">
+                    <!-- Characters will be injected here -->
+                </div>
+                <div id="p2-idle-preview" class="idle-preview"></div>
             </div>
             <div class="player-previews">
                 <div id="p1-preview">P1</div>
@@ -88,6 +92,10 @@
                 </div>
                 <div id="game-text"></div>
             </div>
+            <div id="players-container">
+                <img id="p1-sprite" class="player-sprite">
+                <img id="p2-sprite" class="player-sprite">
+            </div>
             <canvas id="game-canvas"></canvas>
         </div>
 
@@ -98,6 +106,7 @@
         </div>
 
         <div id="transition-overlay" class="hidden"></div>
+        <audio id="bg-music" src="assets/sounds/GLU_FIGHTERS.mp3" loop></audio>
     </div>
 
     <!-- Scripts -->
